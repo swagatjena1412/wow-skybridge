@@ -16,12 +16,151 @@ env:
 
 jobs:
   # ───────────────────────────────────────────────────────────────────────────
-  # DEPLOY ONLY — rapid iteration mode.
-  # lint-and-test, codeql, semgrep, and lighthouse are temporarily disabled.
-  # Re-enable all jobs when the bootcamp demo iteration phase is complete.
+  # BLOCKING: lint + tests + coverage + dependency audit.
+  # Deploy will not run unless this succeeds.
+  # ───────────────────────────────────────────────────────────────────────────
+  lint-and-test:
+    name: Lint, Test & Coverage
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests + coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage/lcov.info
+          fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: npm audit (high & critical only)
+        run: npm audit --omit=dev --audit-level=high
+        continue-on-error: true
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # NON-BLOCKING: SAST + a11y. Run in parallel; failures do NOT stop deploy.
+  # ───────────────────────────────────────────────────────────────────────────
+  codeql:
+    name: CodeQL Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
+
+  semgrep:
+    name: Semgrep Security Scan
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    permissions:
+      contents: read
+      security-events: write
+
+    if: github.actor != 'dependabot[bot]'
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        run: |
+          semgrep ci \
+            --sarif --output=semgrep.sarif \
+            --config=p/default \
+            --config=p/security-audit \
+            --config=p/typescript \
+            --config=p/react \
+            --config=p/owasp-top-ten || true
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+          category: semgrep
+
+  lighthouse:
+    name: Lighthouse Audit (WCAG 2.2 AA)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Run Lighthouse CI
+        run: npx --no-install lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports-${{ github.run_id }}
+          path: .lighthouseci/
+          retention-days: 30
+
+  # ───────────────────────────────────────────────────────────────────────────
+  # DEPLOY: only blocked on lint-and-test. Other scans report independently.
   # ───────────────────────────────────────────────────────────────────────────
   deploy:
     name: Deploy to Vercel
+    needs: lint-and-test
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
     permissions:
