@@ -37,7 +37,10 @@ Single source of truth for code quality, maintainability, security, and coverage
 | **SonarCloud quality dashboard** | [sonarcloud.io/project/overview](https://sonarcloud.io/project/overview?id=swagatjena1412_wow-skybridge) — quality gate, bugs, code smells, security hotspots, coverage, duplications |
 | **Lighthouse / WCAG reports** | Per-run artifacts in the [latest CI run](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml) → "Lighthouse Audit" job → Artifacts (or the `storage.googleapis.com` URLs printed in the logs) |
 | **Vercel deployments** | https://vercel.com/swjena-deloittes-projects/skybridge-ae |
-| **Plan & user stories** | [PLAN.md](./PLAN.md) |
+| **User stories (live tracker)** | [GitHub Issues](https://github.com/swagatjena1412/wow-skybridge/issues?q=is%3Aissue+label%3Auser-story) — every story as a tracked issue with slice + status labels |
+| **Roadmap board** | [Skybridge Roadmap project](https://github.com/users/swagatjena1412/projects/1) — kanban / table / timeline grouped by Slice |
+| **Project plan** | [PROJECT-PLAN.md](./PROJECT-PLAN.md) |
+| **User stories (canonical doc)** | [USER-STORIES.md](./USER-STORIES.md) |
 | **Screen mockups** | [MOCKUPS.md](./MOCKUPS.md) |
 
 ## Tech stack
