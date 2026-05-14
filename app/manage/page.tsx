@@ -122,9 +122,6 @@ export default function ManageAccessibilityPage() {
                   })}
                 </div>
 
-                {cat !== "Other" && (
-                  <div className="border-b border-border mt-4" />
-                )}
               </section>
             );
           })}
