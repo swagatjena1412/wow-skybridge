@@ -6,7 +6,12 @@ export async function POST(req: NextRequest) {
   try {
     const { to } = await req.json();
 
-    if (!to || typeof to !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) {
+    if (
+      !to ||
+      typeof to !== "string" ||
+      to.length > 254 ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)
+    ) {
       return NextResponse.json(
         { error: "Valid email address required" },
         { status: 400 }

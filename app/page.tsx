@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
-import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
+import { MOCK_BOOKING } from "@/lib/data";
 import { NavBar } from "@/components/NavBar";
 
 export default function MyTripsPage() {

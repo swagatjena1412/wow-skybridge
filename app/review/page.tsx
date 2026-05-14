@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle, Info, Plus, X } from "lucide-react";
 import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
@@ -8,20 +8,25 @@ import { useBooking } from "@/lib/store";
 import { NavBar } from "@/components/NavBar";
 import { Separator } from "@/components/ui/separator";
 
+function readPendingFromSession(fallback: string[]): string[] {
+  if (typeof window === "undefined") return fallback;
+  try {
+    const raw = window.sessionStorage.getItem("skybridge-pending");
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 export default function ReviewPage() {
   const router = useRouter();
   const { selectedIds, setSelectedIds } = useBooking();
-  const [pending, setPending] = useState<string[]>([]);
+  const [pending] = useState<string[]>(() =>
+    readPendingFromSession([...selectedIds])
+  );
   const booking = MOCK_BOOKING;
-
-  useEffect(() => {
-    const raw = sessionStorage.getItem("skybridge-pending");
-    if (raw) {
-      setPending(JSON.parse(raw));
-    } else {
-      setPending([...selectedIds]);
-    }
-  }, []);
 
   const added = pending.filter((id) => !selectedIds.includes(id));
   const removed = selectedIds.filter((id) => !pending.includes(id));

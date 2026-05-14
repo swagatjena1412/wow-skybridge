@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import { CheckCircle, ArrowRight, Mail } from "lucide-react";
-import { ACCESSIBILITY_OPTIONS, MOCK_BOOKING } from "@/lib/data";
+import { ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
 import { Separator } from "@/components/ui/separator";
 
 export default function ConfirmationPage() {
   const { selectedIds } = useBooking();
-  const booking = MOCK_BOOKING;
   const finalOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
     selectedIds.includes(o.id)
   );

@@ -11,41 +11,43 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
+function detectPlatform(): Platform {
+  if (typeof window === "undefined") return "unknown";
+  const ua = window.navigator.userAgent.toLowerCase();
+  if (/iphone|ipad|ipod/.test(ua) && !/(crios|fxios|edgios)/.test(ua)) {
+    return "ios";
+  }
+  if (/android/.test(ua)) return "android";
+  return "desktop";
+}
+
+function detectStandalone(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    // @ts-expect-error iOS Safari property
+    window.navigator.standalone === true
+  );
+}
+
 export default function InstallPage() {
-  const [platform, setPlatform] = useState<Platform>("unknown");
-  const [installed, setInstalled] = useState(false);
+  const [platform] = useState<Platform>(detectPlatform);
+  const [installed, setInstalled] = useState<boolean>(detectStandalone);
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
   const [installing, setInstalling] = useState(false);
 
   useEffect(() => {
-    const ua = navigator.userAgent.toLowerCase();
-    if (/iphone|ipad|ipod/.test(ua) && !/(crios|fxios|edgios)/.test(ua)) {
-      setPlatform("ios");
-    } else if (/android/.test(ua)) {
-      setPlatform("android");
-    } else {
-      setPlatform("desktop");
-    }
-
-    const standalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      // @ts-expect-error iOS Safari property
-      window.navigator.standalone === true;
-    if (standalone) setInstalled(true);
-
     const handler = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
     };
-    window.addEventListener("beforeinstallprompt", handler);
-
     const installedHandler = () => {
       setInstalled(true);
       setDeferredPrompt(null);
     };
+    window.addEventListener("beforeinstallprompt", handler);
     window.addEventListener("appinstalled", installedHandler);
-
     return () => {
       window.removeEventListener("beforeinstallprompt", handler);
       window.removeEventListener("appinstalled", installedHandler);

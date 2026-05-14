@@ -9,7 +9,7 @@ import { NavBar } from "@/components/NavBar";
 
 export default function ManageAccessibilityPage() {
   const router = useRouter();
-  const { selectedIds, setSelectedIds } = useBooking();
+  const { selectedIds } = useBooking();
   const [pending, setPending] = useState<string[]>([...selectedIds]);
 
   const toggle = (id: string) => {
