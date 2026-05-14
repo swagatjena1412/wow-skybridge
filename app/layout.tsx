@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { BookingProvider } from "@/components/BookingProvider";
 import { RegisterSW } from "@/components/RegisterSW";
@@ -53,6 +55,8 @@ export default function RootLayout({
           </BookingProvider>
         </ThemeProvider>
         <RegisterSW />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
