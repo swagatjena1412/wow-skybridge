@@ -4,7 +4,7 @@
 
 | | |
 |---|---|
-| **Live demo URL** | https://skybridgeaeroease.vercel.app |
+| **Live demo URL** | https://skybridge-ae.vercel.app |
 | **Repository** | https://github.com/Deloitte-US/pxe-bootcamp-skybridge |
 | **Hosting** | Vercel (auto-deploys on `git push` to `main`) |
 | **Install on phone** | Open URL in mobile browser → "Add to Home Screen" |
