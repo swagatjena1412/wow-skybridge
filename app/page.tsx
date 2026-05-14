@@ -63,25 +63,29 @@ export default function MyTripsPage() {
 
             <p className="text-[13px] text-muted-foreground mt-3">{booking.date}</p>
 
-            {/* Divider + accessibility badge + instructions link */}
-            <div className="border-t border-border mt-3 pt-3 flex items-center gap-2 flex-wrap">
+            {/* Divider + accessibility badge */}
+            <div className="border-t border-border mt-3 pt-3">
               <span className="inline-flex items-center bg-[#EAF5F7] dark:bg-[#1A3040] text-[#1F5E6B] dark:text-[#3AA8B5] text-[12px] font-semibold px-3 py-1.5 rounded-full">
                 {activeCount} accessibility option{activeCount !== 1 ? "s" : ""} active
               </span>
-              {activeCount > 0 && (
-                <InstructionsPopup triggerLabel="Day-of-travel info" />
-              )}
             </div>
           </div>
 
-          {/* CTA button */}
-          <div className="px-4 pb-4">
+          {/* CTAs */}
+          <div className="px-4 pb-4 space-y-2">
             <Link
               href="/booking"
               className="flex items-center justify-center w-full bg-[#1B3252] hover:bg-[#142540] active:bg-[#0F1D30] text-[#E8D5B8] font-bold text-[16px] py-3.5 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-[#3AA8B5] focus-visible:outline-offset-2 min-h-[52px]"
             >
               View Booking
             </Link>
+
+            {activeCount > 0 && (
+              <InstructionsPopup
+                triggerLabel="Day-of-travel info"
+                triggerVariant="button"
+              />
+            )}
           </div>
         </div>
 
