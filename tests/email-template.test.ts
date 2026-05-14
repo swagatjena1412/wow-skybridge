@@ -31,20 +31,8 @@ describe("email template", () => {
     expect(html).toContain("Accessibility Options on this booking");
   });
 
-  it("lists each selected accommodation label and description", () => {
-    const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
-      MOCK_BOOKING.selectedAccessibility.includes(o.id)
-    );
-    for (const opt of selectedOptions) {
-      expect(html).toContain(opt.label);
-      expect(html).toContain(opt.description);
-    }
-  });
-
-  it("shows the correct confirmed count", () => {
-    expect(html).toContain(
-      `${MOCK_BOOKING.selectedAccessibility.length} confirmed`
-    );
+  it("shows 0 confirmed when no options are pre-selected", () => {
+    expect(html).toContain("0 confirmed");
   });
 
   it("prompts user to add or change accommodations", () => {

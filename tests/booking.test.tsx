@@ -25,16 +25,11 @@ describe("Booking Detail page", () => {
     ).toBeInTheDocument();
   });
 
-  it("lists the currently selected accessibility options", () => {
+  it("shows 'no accessibility options added' in the demo starting state", () => {
     renderWithProviders(<BookingDetailPage />);
-    const list = screen.getByRole("list", {
-      name: /selected accessibility options/i,
-    });
-    expect(list).toBeInTheDocument();
-    for (const id of MOCK_BOOKING.selectedAccessibility) {
-      const opt = ACCESSIBILITY_OPTIONS.find((o) => o.id === id)!;
-      expect(screen.getByText(opt.label)).toBeInTheDocument();
-    }
+    expect(
+      screen.getByText(/no accessibility options added/i)
+    ).toBeInTheDocument();
   });
 
   it("renders a Manage Accessibility CTA pointing to /manage", () => {

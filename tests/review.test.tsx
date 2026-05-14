@@ -24,41 +24,25 @@ describe("Review page", () => {
     );
   });
 
-  it("falls back to selectedIds when sessionStorage is empty", () => {
+  it("shows empty state when no options selected and sessionStorage is empty", () => {
     renderWithProviders(<ReviewPage />);
-    for (const id of MOCK_BOOKING.selectedAccessibility) {
-      const opt = ACCESSIBILITY_OPTIONS.find((o) => o.id === id)!;
-      expect(screen.getByText(opt.label)).toBeInTheDocument();
-    }
+    expect(
+      screen.getByText(/no accessibility options selected/i)
+    ).toBeInTheDocument();
   });
 
   it("shows additions when sessionStorage has new ids", () => {
-    const newId = ACCESSIBILITY_OPTIONS.find(
-      (o) => !MOCK_BOOKING.selectedAccessibility.includes(o.id)
-    )!.id;
-    sessionStorage.setItem(
-      "skybridge-pending",
-      JSON.stringify([...MOCK_BOOKING.selectedAccessibility, newId])
-    );
+    const newId = ACCESSIBILITY_OPTIONS[0].id;
+    sessionStorage.setItem("skybridge-pending", JSON.stringify([newId]));
     renderWithProviders(<ReviewPage />);
     expect(screen.getByText(/^new$/i)).toBeInTheDocument();
-  });
-
-  it("shows removals when sessionStorage drops an id", () => {
-    sessionStorage.setItem("skybridge-pending", JSON.stringify([]));
-    renderWithProviders(<ReviewPage />);
-    for (const id of MOCK_BOOKING.selectedAccessibility) {
-      const opt = ACCESSIBILITY_OPTIONS.find((o) => o.id === id)!;
-      const node = screen.getByText(opt.label);
-      expect(node.className).toMatch(/line-through/);
-    }
   });
 
   it("Confirm & Save navigates to /confirmation and clears session", async () => {
     const user = userEvent.setup();
     sessionStorage.setItem(
       "skybridge-pending",
-      JSON.stringify(MOCK_BOOKING.selectedAccessibility)
+      JSON.stringify([ACCESSIBILITY_OPTIONS[0].id])
     );
     renderWithProviders(<ReviewPage />);
     await user.click(screen.getByRole("button", { name: /confirm & save/i }));

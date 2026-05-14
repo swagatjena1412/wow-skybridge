@@ -36,13 +36,13 @@ describe("Manage Accessibility page", () => {
     expect(checkboxes.length).toBe(ACCESSIBILITY_OPTIONS.length);
   });
 
-  it("pre-selects the booking's currently saved options", () => {
+  it("starts with no options pre-selected (demo mode)", () => {
     renderWithProviders(<ManageAccessibilityPage />);
     const checkboxes = screen.getAllByRole("checkbox");
     const checked = checkboxes.filter(
       (cb) => cb.getAttribute("aria-checked") === "true"
     );
-    expect(checked.length).toBe(MOCK_BOOKING.selectedAccessibility.length);
+    expect(checked.length).toBe(0);
   });
 
   it("disables the review button when there are no changes", () => {
@@ -67,18 +67,18 @@ describe("Manage Accessibility page", () => {
     ).toBeEnabled();
   });
 
-  it("toggles a selected option off when clicked again", async () => {
+  it("toggles an option off after selecting it", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ManageAccessibilityPage />);
 
-    const existingId = MOCK_BOOKING.selectedAccessibility[0];
-    const opt = ACCESSIBILITY_OPTIONS.find((o) => o.id === existingId)!;
+    const opt = ACCESSIBILITY_OPTIONS[0];
     const row = screen.getByText(opt.label).closest("button")!;
+    // Select it first
     await user.click(row);
-
-    expect(
-      screen.getByRole("button", { name: /review 1 change/i })
-    ).toBeEnabled();
+    expect(screen.getByRole("button", { name: /review 1 change/i })).toBeEnabled();
+    // Deselect it again
+    await user.click(row);
+    expect(screen.getByRole("button", { name: /no changes/i })).toBeDisabled();
   });
 
   it("navigates to /review and persists pending changes when reviewed", async () => {
@@ -108,10 +108,8 @@ describe("Manage Accessibility page", () => {
     expect(mockPush).toHaveBeenCalledWith("/booking");
   });
 
-  it("flags advance-notice options with a badge", () => {
+  it("renders both demo options without advance-notice badges", () => {
     renderWithProviders(<ManageAccessibilityPage />);
-    expect(
-      screen.getAllByText(/advance notice/i).length
-    ).toBeGreaterThanOrEqual(1);
+    expect(screen.queryAllByText(/advance notice/i).length).toBe(0);
   });
 });

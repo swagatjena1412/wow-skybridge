@@ -16,15 +16,13 @@ function Probe() {
 }
 
 describe("BookingProvider", () => {
-  it("hydrates with mock booking selectedAccessibility by default", () => {
+  it("starts with empty selectedAccessibility in demo mode", () => {
     render(
       <BookingProvider>
         <Probe />
       </BookingProvider>
     );
-    expect(screen.getByTestId("ids")).toHaveTextContent(
-      MOCK_BOOKING.selectedAccessibility.join(",")
-    );
+    expect(screen.getByTestId("ids")).toHaveTextContent("");
   });
 
   it("updates selectedIds when consumer calls setter", async () => {
@@ -38,10 +36,8 @@ describe("BookingProvider", () => {
     expect(screen.getByTestId("ids")).toHaveTextContent("new-id");
   });
 
-  it("default context value (outside provider) returns mock booking ids", () => {
+  it("default context value (outside provider) returns empty ids", () => {
     render(<Probe />);
-    expect(screen.getByTestId("ids")).toHaveTextContent(
-      MOCK_BOOKING.selectedAccessibility.join(",")
-    );
+    expect(screen.getByTestId("ids")).toHaveTextContent("");
   });
 });

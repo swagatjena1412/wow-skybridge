@@ -28,9 +28,10 @@ describe("ACCESSIBILITY_OPTIONS", () => {
     }
   });
 
-  it("flags advance-notice options correctly", () => {
-    const oxygen = ACCESSIBILITY_OPTIONS.find((o) => o.id === "oxygen");
-    expect(oxygen?.advanceNotice).toBe(true);
+  it("neither demo option requires advance notice", () => {
+    for (const opt of ACCESSIBILITY_OPTIONS) {
+      expect(opt.advanceNotice).toBe(false);
+    }
   });
 });
 

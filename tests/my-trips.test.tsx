@@ -20,11 +20,10 @@ describe("My Trips page", () => {
     expect(screen.getByText(MOCK_BOOKING.arriveTime)).toBeInTheDocument();
   });
 
-  it("shows the accessibility options count", () => {
+  it("shows 0 accessibility options for the demo starting state", () => {
     renderWithProviders(<MyTripsPage />);
-    const count = MOCK_BOOKING.selectedAccessibility.length;
     expect(
-      screen.getByText(new RegExp(`${count} accessibility`, "i"))
+      screen.getByText(/0 accessibility option/i)
     ).toBeInTheDocument();
   });
 
