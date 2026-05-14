@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { CheckCircle, Info, Plus, X } from "lucide-react";
 import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
+import { useVariant, logVariantEvent } from "@/lib/variant";
 import { NavBar } from "@/components/NavBar";
 import { Separator } from "@/components/ui/separator";
 
@@ -23,6 +24,7 @@ function readPendingFromSession(fallback: string[]): string[] {
 export default function ReviewPage() {
   const router = useRouter();
   const { selectedIds, setSelectedIds } = useBooking();
+  const variant = useVariant();
   const [pending] = useState<string[]>(() =>
     readPendingFromSession([...selectedIds])
   );
@@ -35,7 +37,18 @@ export default function ReviewPage() {
   const handleConfirm = () => {
     setSelectedIds(pending);
     sessionStorage.removeItem("skybridge-pending");
-    router.push("/confirmation");
+    logVariantEvent(variant, "saved", { addedCount: added.length, removedCount: removed.length });
+
+    if (variant === "a") {
+      // Flavor A: no confirmation page — go straight back to booking detail
+      router.push("/booking?saved=1");
+    } else {
+      // Flavor B: redesigned confirmation — snapshot pre-save ids for diff view
+      try {
+        sessionStorage.setItem("skybridge-prev", JSON.stringify(selectedIds));
+      } catch { /* quota */ }
+      router.push("/confirmation");
+    }
   };
 
   return (
