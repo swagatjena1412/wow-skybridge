@@ -3,20 +3,18 @@
 import Link from "next/link";
 import { CheckCircle, ChevronRight } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
 import { NavBar } from "@/components/NavBar";
 import { Separator } from "@/components/ui/separator";
 
-export default function BookingDetailPage() {
-  const { selectedIds } = useBooking();
-  const booking = MOCK_BOOKING;
-  const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
-    selectedIds.includes(o.id)
-  );
-
-  // Flavor A: show a brief "Saved" banner when redirected from review with ?saved=1
+/**
+ * Flavor A — auto-dismissing "Saved" banner.
+ * Lives in its own component so useSearchParams() can be wrapped in Suspense
+ * (Next.js requires this for static prerender / build time).
+ */
+function SavedBanner() {
   const searchParams = useSearchParams();
   const showSavedBanner = searchParams.get("saved") === "1";
   const [bannerVisible, setBannerVisible] = useState(showSavedBanner);
@@ -28,17 +26,30 @@ export default function BookingDetailPage() {
   }, [showSavedBanner]);
 
   return (
+    <div aria-live="polite" aria-atomic="true">
+      {bannerVisible && (
+        <div className="bg-[#1F5E6B] dark:bg-[#3AA8B5] text-white dark:text-[#1B3252] text-sm font-semibold text-center py-2 px-4 transition-opacity duration-300">
+          Accessibility options saved
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function BookingDetailPage() {
+  const { selectedIds } = useBooking();
+  const booking = MOCK_BOOKING;
+  const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
+    selectedIds.includes(o.id)
+  );
+
+  return (
     <>
       <NavBar title="Booking Details" backHref="/" />
 
-      {/* Flavor A — Saved banner (aria-live so screen readers announce it) */}
-      <div aria-live="polite" aria-atomic="true">
-        {bannerVisible && (
-          <div className="bg-[#1F5E6B] dark:bg-[#3AA8B5] text-white dark:text-[#1B3252] text-sm font-semibold text-center py-2 px-4 transition-opacity duration-300">
-            Accessibility options saved
-          </div>
-        )}
-      </div>
+      <Suspense fallback={null}>
+        <SavedBanner />
+      </Suspense>
 
       <main className="flex-1 p-4 space-y-4 pb-8">
         {/* Flight card */}
