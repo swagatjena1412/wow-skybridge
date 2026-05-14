@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project Plan
+    url: https://github.com/swagatjena1412/wow-skybridge/blob/main/PROJECT-PLAN.md
+    about: Mandatory development process and slice roadmap.
+  - name: All User Stories
+    url: https://github.com/swagatjena1412/wow-skybridge/blob/main/USER-STORIES.md
+    about: Source-of-truth user story document with full acceptance criteria.
