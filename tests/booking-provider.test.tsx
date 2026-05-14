@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import userEvent from "@testing-library/user-event";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BookingProvider } from "@/components/BookingProvider";
 import { useBooking } from "@/lib/store";
 import { MOCK_BOOKING } from "@/lib/data";
