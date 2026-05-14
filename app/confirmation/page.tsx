@@ -80,8 +80,8 @@ export default function ConfirmationPage() {
           Done
         </Link>
 
-        <p className="text-center text-xs text-muted-foreground">
-          Skybridge · From doorstep to destination
+        <p className="text-center text-[12px] text-muted-foreground">
+          Travel with confidence · Skybridge
         </p>
       </div>
     </main>

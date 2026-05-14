@@ -68,7 +68,9 @@ export default function MyTripsPage() {
               <span className="inline-flex items-center bg-[#EAF5F7] dark:bg-[#1A3040] text-[#1F5E6B] dark:text-[#3AA8B5] text-[12px] font-semibold px-3 py-1.5 rounded-full">
                 {activeCount} accessibility option{activeCount !== 1 ? "s" : ""} active
               </span>
-              <InstructionsPopup triggerLabel="Day-of-travel info" />
+              {activeCount > 0 && (
+                <InstructionsPopup triggerLabel="Day-of-travel info" />
+              )}
             </div>
           </div>
 
