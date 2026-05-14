@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { BookingProvider } from "@/components/BookingProvider";
 import { RegisterSW } from "@/components/RegisterSW";
+import { SplashScreen } from "@/components/SplashScreen";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
@@ -52,6 +53,7 @@ export default function RootLayout({
             </div>
           </BookingProvider>
         </ThemeProvider>
+        <SplashScreen />
         <RegisterSW />
       </body>
     </html>
