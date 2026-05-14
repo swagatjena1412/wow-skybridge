@@ -71,7 +71,7 @@ export default function InstallPage() {
     return (
       <main className="flex-1 flex flex-col items-center justify-center p-6 text-center space-y-6">
         <div className="w-20 h-20 rounded-full bg-[#EAF5F7] dark:bg-[#1A3040] border-2 border-[#2A7A8A] dark:border-[#3AA8B5] flex items-center justify-center">
-          <CheckCircle className="w-10 h-10 text-[#2A7A8A] dark:text-[#3AA8B5]" />
+          <CheckCircle className="w-10 h-10 text-[#1F5E6B] dark:text-[#3AA8B5]" />
         </div>
         <div className="space-y-2">
           <h1 className="text-2xl font-bold">You&apos;re all set</h1>
@@ -150,7 +150,7 @@ export default function InstallPage() {
                     Tap the Share button
                   </p>
                   <div className="flex items-center gap-2 mt-1.5 text-sm text-muted-foreground">
-                    <Share className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5]" />
+                    <Share className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5]" />
                     Find this icon at the bottom of Safari
                   </div>
                 </div>
@@ -165,7 +165,7 @@ export default function InstallPage() {
                     Choose &quot;Add to Home Screen&quot;
                   </p>
                   <div className="flex items-center gap-2 mt-1.5 text-sm text-muted-foreground">
-                    <Plus className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5]" />
+                    <Plus className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5]" />
                     Scroll down in the share menu if needed
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function InstallPage() {
             </p>
             <Link
               href="/"
-              className="inline-flex items-center justify-center gap-2 mt-2 text-[#2A7A8A] dark:text-[#3AA8B5] font-semibold text-sm hover:underline"
+              className="inline-flex items-center justify-center gap-2 mt-2 text-[#1F5E6B] dark:text-[#3AA8B5] font-semibold text-sm hover:underline"
             >
               Or continue in browser
               <ArrowRight className="w-4 h-4" />
@@ -217,7 +217,7 @@ export default function InstallPage() {
 
         {/* Why install */}
         <div className="pt-4">
-          <p className="text-xs font-bold uppercase tracking-widest text-[#2A7A8A] dark:text-[#3AA8B5] mb-3">
+          <p className="text-xs font-bold uppercase tracking-widest text-[#1F5E6B] dark:text-[#3AA8B5] mb-3">
             What you get
           </p>
           <div className="space-y-3">
@@ -228,7 +228,7 @@ export default function InstallPage() {
               "One-tap access from your home screen",
             ].map((feature) => (
               <div key={feature} className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-[#2A7A8A] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
+                <CheckCircle className="w-5 h-5 text-[#1F5E6B] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
                 <p className="text-[15px]">{feature}</p>
               </div>
             ))}

@@ -32,7 +32,7 @@ export default function ConfirmationPage() {
         <section aria-labelledby="receipt-heading">
           <p
             id="receipt-heading"
-            className="text-xs font-bold uppercase tracking-widest text-[#2A7A8A] dark:text-[#3AA8B5] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-[#1F5E6B] dark:text-[#3AA8B5] mb-3"
           >
             Accommodations on your booking
           </p>
@@ -40,7 +40,7 @@ export default function ConfirmationPage() {
           <div className="rounded-2xl border border-border bg-white dark:bg-card overflow-hidden shadow-sm divide-y divide-border">
             {finalOptions.map((o) => (
               <div key={o.id} className="flex items-start gap-3 px-4 py-3">
-                <CheckCircle className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
+                <CheckCircle className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
                 <div>
                   <p className="text-[15px] font-semibold">{o.label}</p>
                   <p className="text-sm text-muted-foreground">
@@ -75,7 +75,7 @@ export default function ConfirmationPage() {
                 "A Skybridge agent will meet you at the gate",
               ].map((step) => (
                 <div key={step} className="flex items-start gap-3">
-                  <ArrowRight className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
                   <p className="text-sm">{step}</p>
                 </div>
               ))}

@@ -42,7 +42,7 @@ export default function BookingDetailPage() {
               <div className="flex flex-col items-center gap-1 flex-1 mx-3">
                 <div className="w-full flex items-center gap-1">
                   <div className="flex-1 h-px bg-border" />
-                  <span className="text-[#2A7A8A] dark:text-[#3AA8B5] text-sm">✈</span>
+                  <span className="text-[#1F5E6B] dark:text-[#3AA8B5] text-sm">✈</span>
                   <div className="flex-1 h-px bg-border" />
                 </div>
                 <span className="text-[10px] text-muted-foreground">
@@ -74,7 +74,7 @@ export default function BookingDetailPage() {
             <h2 className="text-[#E8D5B8] font-bold text-[15px]">
               Accessibility Options
             </h2>
-            <span className="bg-[#EAF5F7] text-[#2A7A8A] dark:bg-[#1A3040] dark:text-[#3AA8B5] text-[11px] font-semibold px-3 py-0.5 rounded-full">
+            <span className="bg-[#EAF5F7] text-[#1F5E6B] dark:bg-[#1A3040] dark:text-[#3AA8B5] text-[11px] font-semibold px-3 py-0.5 rounded-full">
               {selectedOptions.length} selected
             </span>
           </div>
@@ -88,7 +88,7 @@ export default function BookingDetailPage() {
               <ul className="space-y-2.5" aria-label="Selected accessibility options">
                 {selectedOptions.map((o) => (
                   <li key={o.id} className="flex items-center gap-2.5">
-                    <CheckCircle className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5] shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] shrink-0" />
                     <span className="text-[15px] font-medium">{o.label}</span>
                   </li>
                 ))}

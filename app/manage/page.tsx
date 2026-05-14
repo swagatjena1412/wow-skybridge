@@ -35,7 +35,7 @@ export default function ManageAccessibilityPage() {
 
       <main className="flex-1 overflow-y-auto pb-32">
         {/* Info callout */}
-        <div className="mx-4 mt-4 flex gap-2 items-start bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] text-[#2A7A8A] dark:text-[#3AA8B5] rounded-xl px-4 py-3 text-sm">
+        <div className="mx-4 mt-4 flex gap-2 items-start bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] text-[#1F5E6B] dark:text-[#3AA8B5] rounded-xl px-4 py-3 text-sm">
           <Info className="w-4 h-4 mt-0.5 shrink-0" />
           <p>
             Select the accommodations that apply to your journey. Changes are
@@ -52,7 +52,7 @@ export default function ManageAccessibilityPage() {
               <section key={cat} aria-labelledby={`cat-${cat}`}>
                 <p
                   id={`cat-${cat}`}
-                  className="text-xs font-bold uppercase tracking-widest text-[#2A7A8A] dark:text-[#3AA8B5] mb-3"
+                  className="text-xs font-bold uppercase tracking-widest text-[#1F5E6B] dark:text-[#3AA8B5] mb-3"
                 >
                   {cat}
                 </p>

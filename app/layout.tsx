@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  // Allow zoom up to 5x — required by WCAG 1.4.4 (Resize text) and
+  // critical for elderly users who rely on pinch-to-zoom.
+  maximumScale: 5,
+  userScalable: true,
   themeColor: "#1B3252",
 };
 

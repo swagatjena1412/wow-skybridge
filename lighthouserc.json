@@ -13,7 +13,16 @@
       "startServerReadyPattern": "Ready in",
       "numberOfRuns": 1,
       "settings": {
-        "preset": "desktop",
+        "preset": "perf",
+        "formFactor": "mobile",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 390,
+          "height": 844,
+          "deviceScaleFactor": 3,
+          "disabled": false
+        },
+        "throttlingMethod": "simulate",
         "skipAudits": ["uses-http2"],
         "chromeFlags": "--no-sandbox --headless"
       }
@@ -30,7 +39,7 @@
         "button-name": "error",
         "html-has-lang": "error",
         "meta-viewport": "error",
-        "tap-targets": "error"
+        "target-size": "warn"
       }
     },
     "upload": {

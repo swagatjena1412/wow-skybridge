@@ -69,7 +69,8 @@
   --secondary: #EAF5F7;
   --secondary-foreground: #1B3252;
   --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.48 0 0);
+  /* Bumped from 0.48 -> 0.38 (~#5e5e5e) for WCAG AA contrast on bg-[#F2F3F5] */
+  --muted-foreground: oklch(0.38 0 0);
   /* Accent = teal */
   --accent: #EAF5F7;
   --accent-foreground: #2A7A8A;

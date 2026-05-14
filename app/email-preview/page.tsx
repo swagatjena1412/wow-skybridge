@@ -53,8 +53,8 @@ export default function EmailPreviewPage() {
         {/* Context */}
         <div className="rounded-2xl bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] p-4 space-y-2">
           <div className="flex gap-2 items-center">
-            <Mail className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5]" />
-            <p className="text-[13px] font-bold text-[#2A7A8A] dark:text-[#3AA8B5] uppercase tracking-widest">
+            <Mail className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5]" />
+            <p className="text-[13px] font-bold text-[#1F5E6B] dark:text-[#3AA8B5] uppercase tracking-widest">
               3 days before travel
             </p>
           </div>

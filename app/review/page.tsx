@@ -51,7 +51,7 @@ export default function ReviewPage() {
         <section aria-labelledby="flight-heading">
           <p
             id="flight-heading"
-            className="text-xs font-bold uppercase tracking-widest text-[#2A7A8A] dark:text-[#3AA8B5] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-[#1F5E6B] dark:text-[#3AA8B5] mb-3"
           >
             Your Flight
           </p>
@@ -106,7 +106,7 @@ export default function ReviewPage() {
         <section aria-labelledby="a11y-heading">
           <p
             id="a11y-heading"
-            className="text-xs font-bold uppercase tracking-widest text-[#2A7A8A] dark:text-[#3AA8B5] mb-3"
+            className="text-xs font-bold uppercase tracking-widest text-[#1F5E6B] dark:text-[#3AA8B5] mb-3"
           >
             Accessibility Selections
           </p>
@@ -123,7 +123,7 @@ export default function ReviewPage() {
               const o = ACCESSIBILITY_OPTIONS.find((x) => x.id === id)!;
               return (
                 <div key={id} className="flex items-center gap-3 px-4 py-3.5">
-                  <CheckCircle className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5] shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] shrink-0" />
                   <span className="text-[15px] font-medium">{o.label}</span>
                 </div>
               );
@@ -137,7 +137,7 @@ export default function ReviewPage() {
                   key={id}
                   className="flex items-center gap-3 px-4 py-3 bg-[#EAF5F7] dark:bg-[#1A3040] border-l-4 border-l-[#2A7A8A] dark:border-l-[#3AA8B5]"
                 >
-                  <Plus className="w-4 h-4 text-[#2A7A8A] dark:text-[#3AA8B5] shrink-0" />
+                  <Plus className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] shrink-0" />
                   <div className="flex-1 min-w-0">
                     <span className="text-[15px] font-semibold">
                       {o.label}
@@ -169,7 +169,7 @@ export default function ReviewPage() {
         </section>
 
         {/* Info callout */}
-        <div className="flex gap-2 items-start bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] text-[#2A7A8A] dark:text-[#3AA8B5] rounded-xl px-4 py-3 text-sm">
+        <div className="flex gap-2 items-start bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] text-[#1F5E6B] dark:text-[#3AA8B5] rounded-xl px-4 py-3 text-sm">
           <Info className="w-4 h-4 mt-0.5 shrink-0" />
           <p>
             You will receive an email confirmation once your changes are saved.

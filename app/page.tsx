@@ -42,7 +42,7 @@ export default function MyTripsPage() {
               <div className="flex flex-col items-center gap-1 flex-1 mx-3">
                 <div className="w-full flex items-center gap-1">
                   <div className="flex-1 h-px bg-border" />
-                  <span className="text-[#2A7A8A] dark:text-[#3AA8B5] text-sm">✈</span>
+                  <span className="text-[#1F5E6B] dark:text-[#3AA8B5] text-sm">✈</span>
                   <div className="flex-1 h-px bg-border" />
                 </div>
                 <span className="text-[10px] text-muted-foreground">{booking.duration}</span>
@@ -60,7 +60,7 @@ export default function MyTripsPage() {
 
             {/* Divider + accessibility badge */}
             <div className="border-t border-border mt-3 pt-3">
-              <span className="inline-flex items-center bg-[#EAF5F7] dark:bg-[#1A3040] text-[#2A7A8A] dark:text-[#3AA8B5] text-[12px] font-semibold px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center bg-[#EAF5F7] dark:bg-[#1A3040] text-[#1F5E6B] dark:text-[#3AA8B5] text-[12px] font-semibold px-3 py-1.5 rounded-full">
                 {activeCount} accessibility option{activeCount !== 1 ? "s" : ""} active
               </span>
             </div>
