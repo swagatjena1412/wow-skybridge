@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { BookingProvider } from "@/components/BookingProvider";
 import { RegisterSW } from "@/components/RegisterSW";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Skybridge",
@@ -30,13 +31,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased bg-background text-foreground">
-        <BookingProvider>
-          <div className="min-h-dvh max-w-[430px] mx-auto flex flex-col">
-            {children}
-          </div>
-        </BookingProvider>
+        <ThemeProvider>
+          <BookingProvider>
+            <div className="min-h-dvh max-w-[430px] mx-auto flex flex-col">
+              {children}
+            </div>
+          </BookingProvider>
+        </ThemeProvider>
         <RegisterSW />
       </body>
     </html>

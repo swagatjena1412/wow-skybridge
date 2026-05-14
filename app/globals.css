@@ -90,33 +90,32 @@
 }
 
 .dark {
-  /* Skybridge brand — dark mode */
-  --background: oklch(0.1 0 0);
-  --foreground: oklch(0.93 0 0);
-  --card: oklch(0.15 0 0);
-  --card-foreground: oklch(0.93 0 0);
-  --popover: oklch(0.15 0 0);
-  --popover-foreground: oklch(0.93 0 0);
-  /* Primary = teal (readable on dark) */
+  /* Skybridge brand — dark mode (Material 3 inspired surface elevation) */
+  --background: #0F1419;
+  --foreground: #ECEDEE;
+  --card: #1A2028;
+  --card-foreground: #ECEDEE;
+  --popover: #1A2028;
+  --popover-foreground: #ECEDEE;
   --primary: #3AA8B5;
-  --primary-foreground: #142540;
-  --secondary: oklch(0.2 0 0);
-  --secondary-foreground: oklch(0.93 0 0);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
+  --primary-foreground: #0F1419;
+  --secondary: #1F2630;
+  --secondary-foreground: #ECEDEE;
+  --muted: #1F2630;
+  --muted-foreground: #A1A8B0;
   --accent: #1A3040;
-  --accent-foreground: #3AA8B5;
+  --accent-foreground: #5BC2CE;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.12);
   --ring: #3AA8B5;
-  --sidebar: oklch(0.15 0 0);
-  --sidebar-foreground: oklch(0.93 0 0);
+  --sidebar: #1A2028;
+  --sidebar-foreground: #ECEDEE;
   --sidebar-primary: #3AA8B5;
-  --sidebar-primary-foreground: #142540;
+  --sidebar-primary-foreground: #0F1419;
   --sidebar-accent: #1A3040;
-  --sidebar-accent-foreground: #3AA8B5;
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-accent-foreground: #5BC2CE;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #3AA8B5;
 }
 
@@ -143,8 +142,31 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Smooth color-scheme transitions when toggling theme */
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .dark body {
   background-color: var(--background);
+}
+
+/* Material-style depth: cards float subtly off the page surface,
+   slightly more in dark mode where contrast is harder to read. */
+@media (prefers-reduced-motion: no-preference) {
+  .surface-elevated {
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+      box-shadow 0.2s ease, transform 0.1s ease;
+  }
+}
+
+/* Press feedback for buttons + tappable rows — subtle scale-down */
+button:active,
+[role="checkbox"]:active,
+[role="button"]:active {
+  transform: scale(0.985);
+}
+
+/* Smooth focus ring transition */
+:focus-visible {
+  transition: outline-offset 0.1s ease;
 }
