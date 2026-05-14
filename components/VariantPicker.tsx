@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { Zap, ListChecks, Shuffle } from "lucide-react";
 
 const VARIANT_KEY = "skybridge-variant";
@@ -24,7 +24,6 @@ function shouldForceShow(forceParam: string | null): boolean {
 }
 
 export function VariantPicker() {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const forceParam = searchParams.get("picker");
@@ -43,10 +42,10 @@ export function VariantPicker() {
       localStorage.setItem(PICKER_DISMISSED_KEY, "1");
     } catch { /* quota */ }
     setDismissed(true);
-    // Strip the ?picker=1 query so the URL stays clean
-    if (forceParam) router.replace(pathname);
-    // Reload so all components re-read localStorage with the new value
-    window.location.reload();
+    // Navigate to the bare path (no ?picker=1) AND reload in one step.
+    // Doing router.replace() then window.location.reload() is a race —
+    // the reload fires before the URL is updated, re-triggering the picker.
+    window.location.href = pathname || "/";
   };
 
   if (!open) return null;

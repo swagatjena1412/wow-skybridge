@@ -6,12 +6,21 @@ import { VariantPicker } from "@/components/VariantPicker";
 const VARIANT_KEY = "skybridge-variant";
 
 describe("VariantPicker", () => {
+  // Track the href the picker assigns after a selection (avoids real navigation)
+  const hrefSetter = vi.fn();
+
   beforeEach(() => {
     localStorage.clear();
-    // Stub window.location.reload — VariantPicker calls it after a selection
+    hrefSetter.mockReset();
+    // Stub window.location so href assignment is observable, no real navigation
     Object.defineProperty(window, "location", {
       writable: true,
-      value: { ...window.location, reload: vi.fn() },
+      value: {
+        ...window.location,
+        reload: vi.fn(),
+        set href(v: string) { hrefSetter(v); },
+        get href() { return ""; },
+      },
     });
   });
 
@@ -56,10 +65,12 @@ describe("VariantPicker", () => {
     expect(["a", "b"]).toContain(localStorage.getItem(VARIANT_KEY));
   });
 
-  it("triggers a page reload after selection", async () => {
+  it("navigates to a clean URL (without ?picker=1) after selection", async () => {
     const user = userEvent.setup();
     render(<VariantPicker />);
     await user.click(screen.getByText(/flavor a/i).closest("button")!);
-    expect(window.location.reload).toHaveBeenCalled();
+    expect(hrefSetter).toHaveBeenCalled();
+    const target = hrefSetter.mock.calls[0][0];
+    expect(target).not.toMatch(/picker=1/);
   });
 });
