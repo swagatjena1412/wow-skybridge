@@ -16,7 +16,6 @@ import { renderWithProviders } from "./test-utils";
 import MyTripsPage from "@/app/page";
 import BookingDetailPage from "@/app/booking/page";
 import ManageAccessibilityPage from "@/app/manage/page";
-import ReviewPage from "@/app/review/page";
 import ConfirmationPage from "@/app/confirmation/page";
 import InstallPage from "@/app/install/page";
 
@@ -45,13 +44,6 @@ describe("WCAG: Booking Detail page", () => {
 describe("WCAG: Manage Accessibility page", () => {
   it("has no detectable a11y violations", async () => {
     const { container } = renderWithProviders(<ManageAccessibilityPage />);
-    expect(await axe(container, RULES)).toHaveNoViolations();
-  });
-});
-
-describe("WCAG: Review page", () => {
-  it("has no detectable a11y violations", async () => {
-    const { container } = renderWithProviders(<ReviewPage />);
     expect(await axe(container, RULES)).toHaveNoViolations();
   });
 });

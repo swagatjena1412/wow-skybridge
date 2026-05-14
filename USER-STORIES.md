@@ -135,19 +135,19 @@
 
 ---
 
-## Slice 4 — Quick save (no confirmation page)
+## Slice 4 — Direct save with confirmation page
 
-**Decision:** After A/B exploration, we shipped only one experience: no confirmation page, with an inline success banner. The A/B variant infrastructure was removed to keep the demo focused.
+**Decision:** Removed the intermediate "Review & Confirm" diff screen. The Manage screen save button goes straight to a clean final confirmation page.
 
-### US-4.1 — Save without a confirmation page
+### US-4.1 — Save changes directly to confirmation
 
-> As an elderly traveler, I want my accessibility selections saved immediately and see the result on my booking straight away, so that I don't have to navigate through an extra screen.
+> As an elderly traveler, I want a single tap to save my accessibility selections and immediately see a clear confirmation, so that the flow is short and the success is unambiguous.
 
 **Acceptance criteria:**
-- Given I am on the Review screen, when I tap "Confirm & Save", I am redirected directly to Booking Detail (not to a separate confirmation page)
-- The Accessibility section on Booking Detail immediately reflects the updated selections
-- A non-intrusive success banner ("Accessibility options saved") appears briefly at the top of the booking detail screen and auto-dismisses after 2 seconds
-- The banner is announced to screen readers via `aria-live="polite"`
+- Given I am on the Manage Accessibility screen, when I tap "Save changes", my selections are saved and I am taken straight to the final Confirmation screen
+- The Confirmation screen shows: success icon + heading + list of saved accommodations + "Done" button
+- "Done" returns to My Trips
+- No intermediate "Review changes" screen with adding/removing/keeping diff is shown
 
 ---
 

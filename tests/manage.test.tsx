@@ -45,17 +45,16 @@ describe("Manage Accessibility page", () => {
     expect(checked.length).toBe(0);
   });
 
-  it("disables the review button when there are no changes", () => {
+  it("disables the save button when there are no changes", () => {
     renderWithProviders(<ManageAccessibilityPage />);
     const button = screen.getByRole("button", { name: /no changes/i });
     expect(button).toBeDisabled();
   });
 
-  it("enables the review button after selecting a new option", async () => {
+  it("enables the save button after selecting a new option", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ManageAccessibilityPage />);
 
-    // Find an option that isn't selected by default
     const newOption = ACCESSIBILITY_OPTIONS.find(
       (o) => !MOCK_BOOKING.selectedAccessibility.includes(o.id)
     )!;
@@ -63,7 +62,7 @@ describe("Manage Accessibility page", () => {
     await user.click(row);
 
     expect(
-      screen.getByRole("button", { name: /^review changes$/i })
+      screen.getByRole("button", { name: /^save changes$/i })
     ).toBeEnabled();
   });
 
@@ -76,14 +75,14 @@ describe("Manage Accessibility page", () => {
     // Select it first
     await user.click(row);
     expect(
-      screen.getByRole("button", { name: /^review changes$/i })
+      screen.getByRole("button", { name: /^save changes$/i })
     ).toBeEnabled();
     // Deselect it again
     await user.click(row);
     expect(screen.getByRole("button", { name: /no changes/i })).toBeDisabled();
   });
 
-  it("navigates to /review and persists pending changes when reviewed", async () => {
+  it("navigates straight to /confirmation when changes are saved", async () => {
     const user = userEvent.setup();
     renderWithProviders(<ManageAccessibilityPage />);
 
@@ -93,16 +92,10 @@ describe("Manage Accessibility page", () => {
     const row = screen.getByText(newOption.label).closest("button")!;
     await user.click(row);
 
-    const reviewBtn = screen.getByRole("button", {
-      name: /^review changes$/i,
-    });
-    await user.click(reviewBtn);
+    const saveBtn = screen.getByRole("button", { name: /^save changes$/i });
+    await user.click(saveBtn);
 
-    expect(mockPush).toHaveBeenCalledWith("/review");
-    const stored = JSON.parse(
-      sessionStorage.getItem("skybridge-pending") ?? "[]"
-    );
-    expect(stored).toContain(newOption.id);
+    expect(mockPush).toHaveBeenCalledWith("/confirmation");
   });
 
   it("cancel button navigates back to /booking", async () => {

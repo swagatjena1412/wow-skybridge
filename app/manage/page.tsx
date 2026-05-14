@@ -9,7 +9,7 @@ import { NavBar } from "@/components/NavBar";
 
 export default function ManageAccessibilityPage() {
   const router = useRouter();
-  const { selectedIds } = useBooking();
+  const { selectedIds, setSelectedIds } = useBooking();
   const [pending, setPending] = useState<string[]>([...selectedIds]);
 
   const toggle = (id: string) => {
@@ -22,10 +22,9 @@ export default function ManageAccessibilityPage() {
   const removed = selectedIds.filter((id) => !pending.includes(id));
   const hasChanges = added.length > 0 || removed.length > 0;
 
-  const handleReview = () => {
-    // Persist pending to session storage so review page can read it
-    sessionStorage.setItem("skybridge-pending", JSON.stringify(pending));
-    router.push("/review");
+  const handleSave = () => {
+    setSelectedIds(pending);
+    router.push("/confirmation");
   };
 
   return (
@@ -130,7 +129,7 @@ export default function ManageAccessibilityPage() {
       {/* Sticky footer */}
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-[#1B3252] border-t-[3px] border-[#3AA8B5] px-4 py-3 flex gap-3">
         <button
-          onClick={handleReview}
+          onClick={handleSave}
           disabled={!hasChanges}
           className={`flex-1 py-3 rounded-xl font-bold text-[15px] transition-all focus-visible:outline-2 focus-visible:outline-[#3AA8B5] focus-visible:outline-offset-2 min-h-[48px]
             ${
@@ -139,7 +138,7 @@ export default function ManageAccessibilityPage() {
                 : "bg-white/10 text-white/40 cursor-not-allowed"
             }`}
         >
-          {hasChanges ? "Review changes" : "No changes"}
+          {hasChanges ? "Save changes" : "No changes"}
         </button>
         <button
           onClick={() => router.push("/booking")}

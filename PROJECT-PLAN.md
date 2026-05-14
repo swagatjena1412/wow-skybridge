@@ -116,7 +116,7 @@ See [USER-STORIES.md](USER-STORIES.md) for full user stories and acceptance crit
 | Slice 1 | Wheelchair to gate + on aircraft — view & edit. Call volume: 504/day pre-launch | 3.7 | 3.3 | Built |
 | Slice 2 | Add guided assistance option (for visually impaired) | — | — | Built |
 | Slice 3 | Separate personal assistance category. Boarding + deboarding terminology added in between slices | 6.3 (2&3) | 5 (2&3) | Built |
-| Slice 4 | Quick save (no confirmation page, inline saved banner). A/B variant infra removed after exploration | TBD | TBD | Built |
+| Slice 4 | Direct save → confirmation page (intermediate Review screen removed) | TBD | TBD | Built |
 | Future | Static accessibility info + additional accommodation options | TBD | TBD | Planned |
 | Slice # | Further iterations TBD based on data | TBD | TBD | Future |
 

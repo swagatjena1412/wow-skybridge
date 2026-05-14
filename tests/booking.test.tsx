@@ -52,18 +52,4 @@ describe("Booking Detail page", () => {
       screen.getAllByText(new RegExp(`Seat ${MOCK_BOOKING.seat}`)).length
     ).toBeGreaterThan(0);
   });
-
-  it("Flavor A: always renders the aria-live success banner region", () => {
-    // The region is always mounted; content is conditional on ?saved=1.
-    // Verifies the element exists and is accessible regardless of variant.
-    renderWithProviders(<BookingDetailPage />);
-    const liveRegion = document.querySelector("[aria-live='polite']");
-    expect(liveRegion).not.toBeNull();
-  });
-
-  it("Flavor A: does not show the saved banner when ?saved param is absent", () => {
-    // useSearchParams() in setup.ts returns empty URLSearchParams by default
-    renderWithProviders(<BookingDetailPage />);
-    expect(screen.queryByText(/accessibility options saved/i)).toBeNull();
-  });
 });
