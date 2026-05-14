@@ -22,9 +22,9 @@ describe("email template", () => {
     expect(html).toContain(`Get ready, ${firstName}`);
   });
 
-  it("CTA links to the booking page", () => {
-    expect(html).toContain("/booking");
-    expect(html).toContain("View &amp; Manage Accessibility");
+  it("CTA links to the guided install page", () => {
+    expect(html).toContain("/install");
+    expect(html).toContain("Install Skybridge App");
   });
 
   it("shows the accessibility section header", () => {

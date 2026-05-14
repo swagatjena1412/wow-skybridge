@@ -2,7 +2,7 @@ import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "./data";
 
 export function getEmailHtml(appUrl: string) {
   const b = MOCK_BOOKING;
-  const ctaLink = `${appUrl}/booking`;
+  const ctaLink = `${appUrl}/install`;
 
   // Resolve the selected accessibility options to their full labels/descriptions
   const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
@@ -145,13 +145,13 @@ export function getEmailHtml(appUrl: string) {
                   <tr>
                     <td style="background:#1B3252;border-radius:12px;">
                       <a href="${ctaLink}" target="_blank" style="display:inline-block;padding:16px 32px;color:#E8D5B8;font-weight:700;font-size:16px;text-decoration:none;letter-spacing:.3px;">
-                        View &amp; Manage Accessibility
+                        Install Skybridge App
                       </a>
                     </td>
                   </tr>
                 </table>
                 <p style="margin:14px 0 0;font-size:12px;color:#999;line-height:1.5;">
-                  Tap to open your booking and update your accessibility needs
+                  Tap to install the app, then open your booking to update your accessibility needs
                 </p>
               </td>
             </tr>

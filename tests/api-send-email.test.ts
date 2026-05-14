@@ -83,7 +83,7 @@ describe("POST /api/send-email", () => {
       ) as unknown as never
     );
     const args = sendMailMock.mock.calls[0][0];
-    expect(args.html).toContain("https://my-custom-host.com/booking");
+    expect(args.html).toContain("https://my-custom-host.com/install");
   });
 
   it("returns 500 when SMTP send throws", async () => {

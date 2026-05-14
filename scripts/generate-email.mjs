@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const APP_URL   = process.env.APP_URL ?? "https://skybridge-ae.vercel.app";
-const CTA_URL   = `${APP_URL}/booking`;
+const CTA_URL   = `${APP_URL}/install`;
 const OUT_DIR   = resolve(__dirname, "..", "out");
 const SUBJECT   = "Your trip is in 3 days — Skybridge";
 
@@ -176,13 +176,13 @@ const html = `<!doctype html>
                   <tr>
                     <td style="background:#1B3252;border-radius:12px;">
                       <a href="${CTA_URL}" target="_blank" style="display:inline-block;padding:16px 32px;color:#E8D5B8;font-weight:700;font-size:16px;text-decoration:none;letter-spacing:.3px;">
-                        View &amp; Manage Accessibility
+                        Install Skybridge App
                       </a>
                     </td>
                   </tr>
                 </table>
                 <p style="margin:14px 0 0;font-size:12px;color:#999;line-height:1.5;">
-                  Tap to open your booking and update your accessibility needs
+                  Tap to install the app, then open your booking to update your accessibility needs
                 </p>
               </td>
             </tr>
@@ -242,7 +242,7 @@ ${SELECTED_ACCOMMODATIONS.map((o) => `  ✓  ${o.label}\n     ${o.description}`)
 
 Need to add or change an accommodation? You can now do it from your phone.
 
-VIEW & MANAGE ACCESSIBILITY:
+INSTALL SKYBRIDGE APP:
 ${CTA_URL}
 
 

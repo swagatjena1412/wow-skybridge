@@ -19,19 +19,19 @@ describe("GET /api/email-html", () => {
     const body = await res.text();
     expect(body).toContain("Skybridge");
     expect(body).toContain("Accessibility Options on this booking");
-    expect(body).toContain("View &amp; Manage Accessibility");
-    expect(body).toContain("/booking");
+    expect(body).toContain("Install Skybridge App");
+    expect(body).toContain("/install");
   });
 
-  it("uses Origin header in the booking link", async () => {
+  it("uses Origin header in the install link", async () => {
     const res = await GET(buildRequest("https://my-host.com") as unknown as never);
     const body = await res.text();
-    expect(body).toContain("https://my-host.com/booking");
+    expect(body).toContain("https://my-host.com/install");
   });
 
   it("falls back to default URL if no Origin header", async () => {
     const res = await GET(buildRequest() as unknown as never);
     const body = await res.text();
-    expect(body).toContain("/booking");
+    expect(body).toContain("/install");
   });
 });
