@@ -7,7 +7,35 @@
 | **Live demo URL** | https://skybridge-ae.vercel.app |
 | **Repository** | https://github.com/Deloitte-US/pxe-bootcamp-skybridge |
 | **Hosting** | Vercel (auto-deploys on `git push` to `main`) |
-| **Install on phone** | Open URL in mobile browser → "Add to Home Screen" |
+| **Install on phone** | https://skybridge-ae.vercel.app/install (guided install) |
+| **Email preview** | https://skybridge-ae.vercel.app/email-preview |
+| **Email service** | Gmail SMTP via nodemailer (env: `GMAIL_USER`, `GMAIL_APP_PASSWORD`) |
+
+## Email Trigger (3 days before travel)
+
+Pre-trip reminder email summarizing the booking and surfacing the new accessibility self-service feature.
+
+**Flow:**
+```
+Booking date - 3 days
+     ↓
+System sends email via Gmail SMTP
+     ↓
+Email contains: booking summary + "Install Skybridge App" CTA
+     ↓
+User taps CTA → opens /install on phone
+     ↓
+/install page detects platform:
+  - Android Chrome → one-tap "Install Skybridge" button (uses beforeinstallprompt API)
+  - iPhone Safari  → 3-step guide pointing at Share button
+  - Already installed → redirect straight to /booking
+     ↓
+App installed on home screen → opens fullscreen
+     ↓
+User goes to Manage Accessibility flow
+```
+
+**Demo:** Open `/email-preview` to see the live email. Enter any address to send a real sample to that inbox.
 
 
 
