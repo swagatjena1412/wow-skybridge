@@ -75,7 +75,7 @@ export default function BookingDetailPage() {
               Accessibility Options
             </h2>
             <span className="bg-[#EAF5F7] text-[#1F5E6B] dark:bg-[#1A3040] dark:text-[#3AA8B5] text-[11px] font-semibold px-3 py-0.5 rounded-full">
-              {selectedOptions.length} selected
+              {selectedOptions.length}/{ACCESSIBILITY_OPTIONS.length} selected
             </span>
           </div>
 

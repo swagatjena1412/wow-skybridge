@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 import { BookingProvider } from "@/components/BookingProvider";
 import { useBooking } from "@/lib/store";
-import { MOCK_BOOKING } from "@/lib/data";
 
 function Probe() {
   const { selectedIds, setSelectedIds } = useBooking();

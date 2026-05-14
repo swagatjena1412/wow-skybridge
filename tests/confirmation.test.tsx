@@ -39,10 +39,11 @@ describe("Confirmation page", () => {
     expect(done).toHaveAttribute("href", "/");
   });
 
-  it("offers an 'Email me a copy' action", () => {
+  it("offers a 'Done' link back to home", () => {
     renderWithProviders(<ConfirmationPage />);
-    expect(
-      screen.getByRole("button", { name: /email me a copy/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /^done$/i })).toHaveAttribute(
+      "href",
+      "/"
+    );
   });
 });

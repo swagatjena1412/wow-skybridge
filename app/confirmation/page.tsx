@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle, ArrowRight, Mail } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
 import { Separator } from "@/components/ui/separator";
@@ -86,19 +86,12 @@ export default function ConfirmationPage() {
         <Separator />
 
         {/* Actions */}
-        <div className="space-y-3">
-          <button className="w-full flex items-center justify-center gap-2 border border-border text-muted-foreground font-medium text-[15px] py-3 rounded-xl hover:bg-muted transition-colors focus-visible:outline-2 focus-visible:outline-[#2A7A8A] focus-visible:outline-offset-2 min-h-[48px]">
-            <Mail className="w-4 h-4" />
-            Email me a copy
-          </button>
-
-          <Link
-            href="/"
-            className="flex items-center justify-center w-full bg-[#1B3252] hover:bg-[#142540] text-[#E8D5B8] font-bold text-[15px] py-3 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-[#3AA8B5] focus-visible:outline-offset-2 min-h-[48px]"
-          >
-            Done
-          </Link>
-        </div>
+        <Link
+          href="/"
+          className="flex items-center justify-center w-full bg-[#1B3252] hover:bg-[#142540] text-[#E8D5B8] font-bold text-[15px] py-3 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-[#3AA8B5] focus-visible:outline-offset-2 min-h-[48px]"
+        >
+          Done
+        </Link>
 
         <p className="text-center text-xs text-muted-foreground">
           Skybridge · From doorstep to destination

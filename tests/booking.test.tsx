@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { renderWithProviders, screen } from "./test-utils";
 import BookingDetailPage from "@/app/booking/page";
-import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
+import { MOCK_BOOKING } from "@/lib/data";
 
 describe("Booking Detail page", () => {
   it("shows the back link to /", () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { getEmailHtml, EMAIL_SUBJECT } from "@/lib/email-template";
-import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
+import { MOCK_BOOKING } from "@/lib/data";
 
 describe("email template", () => {
   const html = getEmailHtml("https://skybridge-ae.vercel.app");
