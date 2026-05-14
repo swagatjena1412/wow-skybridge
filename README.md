@@ -11,6 +11,22 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 
 **https://skybridge-ae.vercel.app**
 
+## Reports
+
+| Report | Where |
+|---|---|
+| **App (live)** | https://skybridge-ae.vercel.app |
+| **PWA install page** | https://skybridge-ae.vercel.app/install |
+| **Email preview / send** | https://skybridge-ae.vercel.app/email-preview |
+| **CI runs** (lint, test, deploy, scans) | [Actions tab](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml) |
+| **Code scanning alerts** (CodeQL + Semgrep) | [Security → Code scanning](https://github.com/swagatjena1412/wow-skybridge/security/code-scanning) |
+| **Dependency vulnerabilities** | [Security → Dependabot](https://github.com/swagatjena1412/wow-skybridge/security/dependabot) |
+| **Test coverage dashboard** | [codecov.io](https://codecov.io/gh/swagatjena1412/wow-skybridge) |
+| **Lighthouse / WCAG reports** | Per-run artifacts in the [latest CI run](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml) → "Lighthouse Audit" job → Artifacts (or the `storage.googleapis.com` URLs printed in the logs) |
+| **Vercel deployments** | https://vercel.com/swjena-deloittes-projects/skybridge-ae |
+| **Plan & user stories** | [PLAN.md](./PLAN.md) |
+| **Screen mockups** | [MOCKUPS.md](./MOCKUPS.md) |
+
 ## Tech stack
 
 - **Next.js 16** (App Router) + TypeScript
