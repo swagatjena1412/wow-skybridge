@@ -5,6 +5,7 @@ import { CheckCircle } from "lucide-react";
 import { MOCK_BOOKING } from "@/lib/data";
 import { NavBar } from "@/components/NavBar";
 import { useBooking } from "@/lib/store";
+import { InstructionsPopup } from "@/components/InstructionsPopup";
 
 export default function MyTripsPage() {
   const booking = MOCK_BOOKING;
@@ -62,11 +63,12 @@ export default function MyTripsPage() {
 
             <p className="text-[13px] text-muted-foreground mt-3">{booking.date}</p>
 
-            {/* Divider + accessibility badge */}
-            <div className="border-t border-border mt-3 pt-3">
+            {/* Divider + accessibility badge + instructions link */}
+            <div className="border-t border-border mt-3 pt-3 flex items-center gap-2 flex-wrap">
               <span className="inline-flex items-center bg-[#EAF5F7] dark:bg-[#1A3040] text-[#1F5E6B] dark:text-[#3AA8B5] text-[12px] font-semibold px-3 py-1.5 rounded-full">
                 {activeCount} accessibility option{activeCount !== 1 ? "s" : ""} active
               </span>
+              <InstructionsPopup triggerLabel="Day-of-travel info" />
             </div>
           </div>
 

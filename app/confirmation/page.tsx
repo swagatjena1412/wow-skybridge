@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Mail } from "lucide-react";
 import { ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
 import { Separator } from "@/components/ui/separator";
+import { InstructionsPopup } from "@/components/InstructionsPopup";
 
 export default function ConfirmationPage() {
   const { selectedIds } = useBooking();
@@ -55,6 +56,20 @@ export default function ConfirmationPage() {
             ))}
           </div>
         </section>
+
+        {/* Email confirmation notice */}
+        <div className="flex gap-2 items-start bg-[#EAF5F7] dark:bg-[#1A3040] border border-[#B0DCE3] dark:border-[#2A5A6A] rounded-xl px-4 py-3 text-sm text-[#1F5E6B] dark:text-[#3AA8B5]">
+          <Mail className="w-4 h-4 mt-0.5 shrink-0" />
+          <p>
+            An email with day-of-travel instructions has been sent to your inbox.
+          </p>
+        </div>
+
+        {/* Instructions popup trigger */}
+        <InstructionsPopup
+          triggerLabel="View day-of-travel instructions"
+          triggerVariant="button"
+        />
 
         <Separator />
 
