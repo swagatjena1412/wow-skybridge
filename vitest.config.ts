@@ -20,14 +20,18 @@ export default defineConfig({
         "**/*.d.ts",
         "**/types.ts",
         "components/ui/**",
-        "app/api/**",
+        // Layout is mostly framework metadata; not meaningful to unit-test.
         "app/layout.tsx",
+        // Service worker registration is browser-only side effect.
+        "components/RegisterSW.tsx",
+        // Plain re-exports / utility shims with trivial logic.
+        "lib/utils.ts",
       ],
       thresholds: {
-        lines: 15,
-        functions: 50,
-        branches: 50,
-        statements: 15,
+        lines: 90,
+        functions: 90,
+        branches: 80,
+        statements: 90,
       },
     },
   },
