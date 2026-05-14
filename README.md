@@ -7,6 +7,7 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 [![CI](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml)
 [![Semgrep](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml)
+[![Lighthouse](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/lighthouse.yml)
 [![codecov](https://codecov.io/gh/swagatjena1412/wow-skybridge/branch/main/graph/badge.svg)](https://codecov.io/gh/swagatjena1412/wow-skybridge)
 
 ## Live demo
@@ -27,6 +28,7 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 | Lint, tests, coverage, deploy | Vitest, Codecov, Vercel | `.github/workflows/ci.yml` (sequential — deploy blocked on tests) |
 | SAST | CodeQL + Semgrep | `.github/workflows/codeql.yml`, `semgrep.yml` (weekly + per-PR) |
 | Dependencies | Dependabot + npm audit | GitHub native + `ci.yml` |
+| WCAG 2.2 AA | vitest-axe + Lighthouse CI | `tests/a11y.test.tsx`, `.github/workflows/lighthouse.yml` |
 
 ## Local development
 
