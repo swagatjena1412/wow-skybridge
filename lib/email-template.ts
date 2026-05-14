@@ -162,8 +162,8 @@ export function getEmailHtml(appUrl: string) {
                 <p style="margin:0 0 10px;color:#2A7A8A;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;">What to expect at the airport</p>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                   <tr><td style="padding:6px 0;color:#444;font-size:14px;">&rarr; Arrive at least 30 minutes earlier than usual</td></tr>
-                  <tr><td style="padding:6px 0;color:#444;font-size:14px;">&rarr; Check in at the accessible services desk</td></tr>
-                  <tr><td style="padding:6px 0;color:#444;font-size:14px;">&rarr; A Skybridge agent will meet you at the gate</td></tr>
+                  <tr><td style="padding:6px 0;color:#444;font-size:14px;">&rarr; Check in at any check-in counter, the accessible services desk, or any Skybridge agent in a teal vest</td></tr>
+                  <tr><td style="padding:6px 0;color:#444;font-size:14px;">&rarr; An agent will accompany you through security to your gate</td></tr>
                 </table>
               </td>
             </tr>

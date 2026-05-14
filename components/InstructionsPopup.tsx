@@ -73,13 +73,13 @@ export function InstructionsPopup({
           />
           <InstructionRow
             icon={<MapPin className="w-4 h-4" />}
-            title="Check in at the accessible services desk"
-            body="Look for the dedicated accessible services counter near the main check-in area. Skip the regular queue."
+            title="Check in"
+            body="Visit any check-in counter, the dedicated accessible services desk, or approach any Skybridge agent wearing a teal Skybridge vest — they will help you skip the regular queue."
           />
           <InstructionRow
             icon={<UserCheck className="w-4 h-4" />}
-            title="A Skybridge agent will meet you"
-            body="An agent will accompany you through security and to your gate. They'll be wearing a teal Skybridge vest."
+            title="A Skybridge agent will accompany you"
+            body="An agent will guide you through security and to your gate. Look for the teal Skybridge vest."
           />
           <InstructionRow
             icon={<Plane className="w-4 h-4" />}
