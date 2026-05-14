@@ -4,8 +4,7 @@
 
 A post-booking accessibility management PWA for elderly travelers. Built for the Ways of Work bootcamp.
 
-[![Deploy](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/deploy.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/deploy.yml)
-[![Test & Coverage](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/test.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/test.yml)
+[![CI](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml)
 [![Semgrep](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml)
 [![codecov](https://codecov.io/gh/swagatjena1412/wow-skybridge/branch/main/graph/badge.svg)](https://codecov.io/gh/swagatjena1412/wow-skybridge)
@@ -25,11 +24,9 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 
 | Concern | Tool | Workflow |
 |---|---|---|
-| Tests | Vitest + Testing Library | `.github/workflows/test.yml` |
-| Coverage | @vitest/coverage-v8 + Codecov | `.github/workflows/test.yml` |
-| SAST | CodeQL + Semgrep | `.github/workflows/codeql.yml`, `semgrep.yml` |
-| Dependencies | Dependabot + npm audit | GitHub native + `test.yml` |
-| Deploy | Vercel via GitHub Actions | `.github/workflows/deploy.yml` |
+| Lint, tests, coverage, deploy | Vitest, Codecov, Vercel | `.github/workflows/ci.yml` (sequential — deploy blocked on tests) |
+| SAST | CodeQL + Semgrep | `.github/workflows/codeql.yml`, `semgrep.yml` (weekly + per-PR) |
+| Dependencies | Dependabot + npm audit | GitHub native + `ci.yml` |
 
 ## Local development
 
