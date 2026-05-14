@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Skybridge
 
-## Getting Started
+> Travel with confidence — manage your accessibility needs
 
-First, run the development server:
+A post-booking accessibility management PWA for elderly travelers. Built for the Ways of Work bootcamp.
+
+[![Deploy](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/deploy.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/deploy.yml)
+[![Test & Coverage](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/test.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/test.yml)
+[![CodeQL](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/codeql.yml)
+[![Semgrep](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/semgrep.yml)
+[![codecov](https://codecov.io/gh/swagatjena1412/wow-skybridge/branch/main/graph/badge.svg)](https://codecov.io/gh/swagatjena1412/wow-skybridge)
+
+## Live demo
+
+**https://skybridge-ae.vercel.app**
+
+## Tech stack
+
+- **Next.js 16** (App Router) + TypeScript
+- **Tailwind CSS v4** + shadcn/ui
+- **PWA** with service worker, installable on iOS & Android
+- **WCAG 2.2 compliant** — 48dp touch targets, focus-visible, plain language
+
+## Quality & security
+
+| Concern | Tool | Workflow |
+|---|---|---|
+| Tests | Vitest + Testing Library | `.github/workflows/test.yml` |
+| Coverage | @vitest/coverage-v8 + Codecov | `.github/workflows/test.yml` |
+| SAST | CodeQL + Semgrep | `.github/workflows/codeql.yml`, `semgrep.yml` |
+| Dependencies | Dependabot + npm audit | GitHub native + `test.yml` |
+| Deploy | Vercel via GitHub Actions | `.github/workflows/deploy.yml` |
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # Start dev server at http://localhost:3000
+npm test             # Run tests once
+npm run test:watch   # Watch mode
+npm run test:coverage # With coverage report
+npm run lint         # ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Email feature (3-day reminder)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pre-trip email triggers 3 days before travel, surfacing the new accessibility self-service feature.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Live preview: `/email-preview` — see the email and send a sample
+- Install page: `/install` — platform-aware PWA install flow
+- API: `POST /api/send-email` — sends via Gmail SMTP
 
-## Learn More
+Requires `GMAIL_USER` and `GMAIL_APP_PASSWORD` env vars in Vercel.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [`PLAN.md`](./PLAN.md) for the full design, persona, and user stories.
