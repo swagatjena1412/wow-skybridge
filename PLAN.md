@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Live demo URL** | https://skybridge-ae.vercel.app |
-| **Repository** | https://github.com/Deloitte-US/pxe-bootcamp-skybridge |
+| **Repository** | https://github.com/swagatjena1412/wow-skybridge |
 | **Hosting** | Vercel (auto-deploys on `git push` to `main`) |
 | **Install on phone** | https://skybridge-ae.vercel.app/install (guided install) |
 | **Email preview** | https://skybridge-ae.vercel.app/email-preview |

@@ -81,25 +81,6 @@ export default function MyTripsPage() {
         <p className="text-center text-[12px] text-muted-foreground pt-2">
           Travel with confidence · Skybridge
         </p>
-
-        {/* Demo links — only shown for bootcamp demo navigation */}
-        <div className="pt-6 border-t border-border space-y-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-            Demo
-          </p>
-          <Link
-            href="/email-preview"
-            className="block text-sm text-[#2A7A8A] dark:text-[#3AA8B5] hover:underline"
-          >
-            → View 3-day-before email preview
-          </Link>
-          <Link
-            href="/install"
-            className="block text-sm text-[#2A7A8A] dark:text-[#3AA8B5] hover:underline"
-          >
-            → Install on phone (PWA install screen)
-          </Link>
-        </div>
       </main>
     </>
   );
