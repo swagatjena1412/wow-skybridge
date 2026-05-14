@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { ACCESSIBILITY_OPTIONS } from "@/lib/data";
 import { useBooking } from "@/lib/store";
 import { Separator } from "@/components/ui/separator";
@@ -54,32 +54,6 @@ export default function ConfirmationPage() {
                 No accessibility options on this booking.
               </p>
             )}
-          </div>
-        </section>
-
-        {/* What to expect */}
-        <section aria-labelledby="expect-heading">
-          <div className="rounded-2xl border border-border bg-white dark:bg-card overflow-hidden shadow-sm">
-            <div className="px-4 py-3 bg-[#1B3252] border-b-2 border-[#3AA8B5]">
-              <h2
-                id="expect-heading"
-                className="text-[#E8D5B8] font-bold text-[13px] uppercase tracking-widest"
-              >
-                What to expect at the airport
-              </h2>
-            </div>
-            <div className="px-4 py-4 space-y-3">
-              {[
-                "Arrive at least 30 minutes earlier than usual",
-                "Check in at the accessible services desk",
-                "A Skybridge agent will meet you at the gate",
-              ].map((step) => (
-                <div key={step} className="flex items-start gap-3">
-                  <ArrowRight className="w-4 h-4 text-[#1F5E6B] dark:text-[#3AA8B5] mt-0.5 shrink-0" />
-                  <p className="text-sm">{step}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 

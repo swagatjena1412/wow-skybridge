@@ -7,28 +7,32 @@ export type AccessibilityOption = {
   unavailable?: boolean;
 };
 
-export type Category = "Mobility";
+export type Category = "Mobility & Wheelchair" | "Personal Assistance";
 
-export const CATEGORIES: Category[] = ["Mobility"];
+// Order here drives the order categories appear on the Manage screen.
+export const CATEGORIES: Category[] = [
+  "Mobility & Wheelchair",
+  "Personal Assistance",
+];
 
 export const ACCESSIBILITY_OPTIONS: AccessibilityOption[] = [
   {
     id: "wheelchair-gate",
-    category: "Mobility",
+    category: "Mobility & Wheelchair",
     label: "Wheelchair to gate",
     description: "Assistance from check-in to your departure gate",
     advanceNotice: false,
   },
   {
     id: "wheelchair-aircraft",
-    category: "Mobility",
+    category: "Mobility & Wheelchair",
     label: "Wheelchair on aircraft",
     description: "Aisle wheelchair to help you reach your seat",
     advanceNotice: false,
   },
   {
     id: "guided-assistance",
-    category: "Mobility",
+    category: "Personal Assistance",
     label: "Guided assistance",
     description:
       "An agent will accompany you through security, the airport, and to your gate",

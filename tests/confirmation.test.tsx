@@ -19,31 +19,9 @@ describe("Confirmation page", () => {
     }
   });
 
-  it("renders 'What to expect' section", () => {
-    renderWithProviders(<ConfirmationPage />);
-    expect(
-      screen.getByRole("heading", { name: /what to expect at the airport/i })
-    ).toBeInTheDocument();
-  });
-
-  it("includes airport instructions", () => {
-    renderWithProviders(<ConfirmationPage />);
-    expect(screen.getByText(/30 minutes earlier/i)).toBeInTheDocument();
-    expect(screen.getByText(/accessible services desk/i)).toBeInTheDocument();
-    expect(screen.getByText(/agent will meet you at the gate/i)).toBeInTheDocument();
-  });
-
   it("provides a Done link back to /", () => {
     renderWithProviders(<ConfirmationPage />);
     const done = screen.getByRole("link", { name: /^done$/i });
     expect(done).toHaveAttribute("href", "/");
-  });
-
-  it("offers a 'Done' link back to home", () => {
-    renderWithProviders(<ConfirmationPage />);
-    expect(screen.getByRole("link", { name: /^done$/i })).toHaveAttribute(
-      "href",
-      "/"
-    );
   });
 });

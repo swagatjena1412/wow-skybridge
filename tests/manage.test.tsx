@@ -63,7 +63,7 @@ describe("Manage Accessibility page", () => {
     await user.click(row);
 
     expect(
-      screen.getByRole("button", { name: /review 1 change/i })
+      screen.getByRole("button", { name: /^review changes$/i })
     ).toBeEnabled();
   });
 
@@ -75,7 +75,9 @@ describe("Manage Accessibility page", () => {
     const row = screen.getByText(opt.label).closest("button")!;
     // Select it first
     await user.click(row);
-    expect(screen.getByRole("button", { name: /review 1 change/i })).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: /^review changes$/i })
+    ).toBeEnabled();
     // Deselect it again
     await user.click(row);
     expect(screen.getByRole("button", { name: /no changes/i })).toBeDisabled();
@@ -91,7 +93,9 @@ describe("Manage Accessibility page", () => {
     const row = screen.getByText(newOption.label).closest("button")!;
     await user.click(row);
 
-    const reviewBtn = screen.getByRole("button", { name: /review 1 change/i });
+    const reviewBtn = screen.getByRole("button", {
+      name: /^review changes$/i,
+    });
     await user.click(reviewBtn);
 
     expect(mockPush).toHaveBeenCalledWith("/review");

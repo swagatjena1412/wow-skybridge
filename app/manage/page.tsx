@@ -21,7 +21,6 @@ export default function ManageAccessibilityPage() {
   const added = pending.filter((id) => !selectedIds.includes(id));
   const removed = selectedIds.filter((id) => !pending.includes(id));
   const hasChanges = added.length > 0 || removed.length > 0;
-  const changeCount = added.length + removed.length;
 
   const handleReview = () => {
     // Persist pending to session storage so review page can read it
@@ -140,9 +139,7 @@ export default function ManageAccessibilityPage() {
                 : "bg-white/10 text-white/40 cursor-not-allowed"
             }`}
         >
-          {hasChanges
-            ? `Review ${changeCount} change${changeCount !== 1 ? "s" : ""}`
-            : "No changes"}
+          {hasChanges ? "Review changes" : "No changes"}
         </button>
         <button
           onClick={() => router.push("/booking")}
