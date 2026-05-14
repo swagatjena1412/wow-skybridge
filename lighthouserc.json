@@ -5,7 +5,6 @@
         "http://localhost:3000/",
         "http://localhost:3000/booking",
         "http://localhost:3000/manage",
-        "http://localhost:3000/review",
         "http://localhost:3000/confirmation",
         "http://localhost:3000/install"
       ],
