@@ -14,6 +14,12 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 
 **https://skybridge-ae.vercel.app**
 
+## Code quality dashboard
+
+**https://sonarcloud.io/project/overview?id=swagatjena1412_wow-skybridge**
+
+Single source of truth for code quality, maintainability, security, and coverage. Updated automatically on every push to `main`.
+
 ## Reports
 
 | Report | Where |
@@ -25,7 +31,7 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 | **Code scanning alerts** (CodeQL + Semgrep) | [Security → Code scanning](https://github.com/swagatjena1412/wow-skybridge/security/code-scanning) |
 | **Dependency vulnerabilities** | [Security → Dependabot](https://github.com/swagatjena1412/wow-skybridge/security/dependabot) |
 | **Test coverage dashboard** | [codecov.io](https://codecov.io/gh/swagatjena1412/wow-skybridge) |
-| **SonarCloud quality dashboard** (single source of truth) | [sonarcloud.io](https://sonarcloud.io/summary/new_code?id=swagatjena1412_wow-skybridge) — quality gate, bugs, code smells, security hotspots, coverage, duplications |
+| **SonarCloud quality dashboard** (single source of truth) | [sonarcloud.io/project/overview](https://sonarcloud.io/project/overview?id=swagatjena1412_wow-skybridge) — quality gate, bugs, code smells, security hotspots, coverage, duplications |
 | **Lighthouse / WCAG reports** | Per-run artifacts in the [latest CI run](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml) → "Lighthouse Audit" job → Artifacts (or the `storage.googleapis.com` URLs printed in the logs) |
 | **Vercel deployments** | https://vercel.com/swjena-deloittes-projects/skybridge-ae |
 | **Plan & user stories** | [PLAN.md](./PLAN.md) |
@@ -44,12 +50,13 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 |---|---|---|
 | All quality gates | Single workflow with parallel jobs | `.github/workflows/ci.yml` |
 
-The workflow runs five jobs in parallel:
+The workflow runs six jobs in parallel:
 
 - **`Lint, Test & Coverage`** — Vitest + Codecov + npm audit (BLOCKING — deploy waits on this)
 - **`CodeQL Security Scan`** — runs in parallel, reports independently, never blocks deploy
 - **`Semgrep Security Scan`** — runs in parallel, reports independently, never blocks deploy
 - **`Lighthouse Audit (WCAG 2.2 AA)`** — runs in parallel, reports independently, never blocks deploy
+- **`SonarCloud Quality Scan`** — runs after lint-and-test (uses its coverage), reports to [SonarCloud](https://sonarcloud.io/project/overview?id=swagatjena1412_wow-skybridge), never blocks deploy
 - **`Deploy to Vercel`** — production on `main`, preview on PRs. Only runs after `Lint, Test & Coverage` succeeds.
 
 Triggered on: `push` to main, every PR, and a weekly Monday 03:21 UTC cron (so security scans stay fresh even when nothing was pushed).
