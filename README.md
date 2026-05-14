@@ -6,6 +6,9 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 
 [![CI](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml/badge.svg)](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/swagatjena1412/wow-skybridge/branch/main/graph/badge.svg)](https://codecov.io/gh/swagatjena1412/wow-skybridge)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=swagatjena1412_wow-skybridge&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=swagatjena1412_wow-skybridge)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=swagatjena1412_wow-skybridge&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=swagatjena1412_wow-skybridge)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=swagatjena1412_wow-skybridge&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=swagatjena1412_wow-skybridge)
 
 ## Live demo
 
@@ -22,6 +25,7 @@ A post-booking accessibility management PWA for elderly travelers. Built for the
 | **Code scanning alerts** (CodeQL + Semgrep) | [Security → Code scanning](https://github.com/swagatjena1412/wow-skybridge/security/code-scanning) |
 | **Dependency vulnerabilities** | [Security → Dependabot](https://github.com/swagatjena1412/wow-skybridge/security/dependabot) |
 | **Test coverage dashboard** | [codecov.io](https://codecov.io/gh/swagatjena1412/wow-skybridge) |
+| **SonarCloud quality dashboard** (single source of truth) | [sonarcloud.io](https://sonarcloud.io/summary/new_code?id=swagatjena1412_wow-skybridge) — quality gate, bugs, code smells, security hotspots, coverage, duplications |
 | **Lighthouse / WCAG reports** | Per-run artifacts in the [latest CI run](https://github.com/swagatjena1412/wow-skybridge/actions/workflows/ci.yml) → "Lighthouse Audit" job → Artifacts (or the `storage.googleapis.com` URLs printed in the logs) |
 | **Vercel deployments** | https://vercel.com/swjena-deloittes-projects/skybridge-ae |
 | **Plan & user stories** | [PLAN.md](./PLAN.md) |
