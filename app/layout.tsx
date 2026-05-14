@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { BookingProvider } from "@/components/BookingProvider";
 import { RegisterSW } from "@/components/RegisterSW";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { VariantPicker } from "@/components/VariantPicker";
 
 export const metadata: Metadata = {
   title: "Skybridge",
@@ -50,6 +52,9 @@ export default function RootLayout({
             <div className="min-h-dvh max-w-[430px] mx-auto flex flex-col">
               {children}
             </div>
+            <Suspense fallback={null}>
+              <VariantPicker />
+            </Suspense>
           </BookingProvider>
         </ThemeProvider>
         <RegisterSW />
