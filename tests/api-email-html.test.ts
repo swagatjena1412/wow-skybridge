@@ -14,23 +14,24 @@ describe("GET /api/email-html", () => {
     expect(res.headers.get("Content-Type")).toContain("text/html");
   });
 
-  it("renders the brand and CTA in the body", async () => {
+  it("renders the brand, accommodations section, and CTA in the body", async () => {
     const res = await GET(buildRequest("https://test.example.com") as unknown as never);
     const body = await res.text();
     expect(body).toContain("Skybridge");
-    expect(body).toContain("Install Skybridge App");
-    expect(body).toContain("/install");
+    expect(body).toContain("Accessibility Options on this booking");
+    expect(body).toContain("View &amp; Manage Accessibility");
+    expect(body).toContain("/booking");
   });
 
-  it("uses Origin header in the install link", async () => {
+  it("uses Origin header in the booking link", async () => {
     const res = await GET(buildRequest("https://my-host.com") as unknown as never);
     const body = await res.text();
-    expect(body).toContain("https://my-host.com/install");
+    expect(body).toContain("https://my-host.com/booking");
   });
 
   it("falls back to default URL if no Origin header", async () => {
     const res = await GET(buildRequest() as unknown as never);
     const body = await res.text();
-    expect(body).toContain("/install");
+    expect(body).toContain("/booking");
   });
 });

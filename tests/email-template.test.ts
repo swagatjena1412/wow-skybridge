@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { getEmailHtml, EMAIL_SUBJECT } from "@/lib/email-template";
-import { MOCK_BOOKING } from "@/lib/data";
+import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "@/lib/data";
 
 describe("email template", () => {
   const html = getEmailHtml("https://skybridge-ae.vercel.app");
@@ -22,13 +22,33 @@ describe("email template", () => {
     expect(html).toContain(`Get ready, ${firstName}`);
   });
 
-  it("links the CTA button to the install page", () => {
-    expect(html).toContain("/install");
-    expect(html).toContain("Install Skybridge App");
+  it("CTA links to the booking page", () => {
+    expect(html).toContain("/booking");
+    expect(html).toContain("View &amp; Manage Accessibility");
   });
 
-  it("mentions the new accessibility feature", () => {
-    expect(html.toLowerCase()).toContain("accessibility");
+  it("shows the accessibility section header", () => {
+    expect(html).toContain("Accessibility Options on this booking");
+  });
+
+  it("lists each selected accommodation label and description", () => {
+    const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
+      MOCK_BOOKING.selectedAccessibility.includes(o.id)
+    );
+    for (const opt of selectedOptions) {
+      expect(html).toContain(opt.label);
+      expect(html).toContain(opt.description);
+    }
+  });
+
+  it("shows the correct confirmed count", () => {
+    expect(html).toContain(
+      `${MOCK_BOOKING.selectedAccessibility.length} confirmed`
+    );
+  });
+
+  it("prompts user to add or change accommodations", () => {
+    expect(html).toContain("add or change an accommodation");
   });
 
   it("subject mentions days until travel", () => {

@@ -1,8 +1,34 @@
-import { MOCK_BOOKING } from "./data";
+import { MOCK_BOOKING, ACCESSIBILITY_OPTIONS } from "./data";
 
 export function getEmailHtml(appUrl: string) {
   const b = MOCK_BOOKING;
-  const ctaLink = `${appUrl}/install`;
+  const ctaLink = `${appUrl}/booking`;
+
+  // Resolve the selected accessibility options to their full labels/descriptions
+  const selectedOptions = ACCESSIBILITY_OPTIONS.filter((o) =>
+    b.selectedAccessibility.includes(o.id)
+  );
+
+  const accommodationsRows = selectedOptions
+    .map(
+      (o) => `
+            <tr>
+              <td style="padding:8px 0;border-bottom:1px solid #F0F0F0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td width="24" style="vertical-align:top;padding-top:2px;">
+                      <span style="display:inline-block;width:18px;height:18px;background:#1B3252;border-radius:50%;text-align:center;line-height:18px;font-size:10px;color:#E8D5B8;font-weight:700;">&#10003;</span>
+                    </td>
+                    <td style="padding-left:8px;">
+                      <p style="margin:0;font-size:14px;font-weight:700;color:#141414;">${o.label}</p>
+                      <p style="margin:2px 0 0;font-size:12px;color:#777;">${o.description}</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>`
+    )
+    .join("");
 
   return `<!doctype html>
 <html lang="en">
@@ -77,16 +103,35 @@ export function getEmailHtml(appUrl: string) {
               </td>
             </tr>
 
-            <!-- New feature callout -->
+            <!-- Accessibility accommodations -->
             <tr>
-              <td style="padding:8px 24px 16px;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EAF5F7;border:1px solid #B0DCE3;border-radius:12px;">
+              <td style="padding:8px 24px 0;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:2px solid #3AA8B5;border-radius:12px;overflow:hidden;">
+                  <!-- Section header -->
                   <tr>
-                    <td style="padding:18px;">
-                      <p style="margin:0;color:#2A7A8A;font-weight:700;font-size:14px;">NEW &middot; Manage accessibility from your phone</p>
-                      <p style="margin:8px 0 0;color:#1B3252;font-size:14px;line-height:1.5;">
-                        You can now view, add, and modify accessibility accommodations directly in the Skybridge app &mdash; no need to call support.
-                      </p>
+                    <td style="background:#1B3252;padding:12px 16px;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                          <td style="color:#E8D5B8;font-weight:700;font-size:14px;">Accessibility Options on this booking</td>
+                          <td align="right">
+                            <span style="background:#EAF5F7;color:#1B3252;font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;display:inline-block;">${selectedOptions.length} confirmed</span>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- Accommodation rows -->
+                  <tr>
+                    <td style="padding:4px 16px 8px;background:#FFFFFF;">
+                      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        ${accommodationsRows}
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- CTA inside section -->
+                  <tr>
+                    <td style="padding:12px 16px;background:#F8FAFB;border-top:1px solid #E5E5E5;">
+                      <p style="margin:0;font-size:13px;color:#555;">Need to add or change an accommodation? You can now do it from your phone.</p>
                     </td>
                   </tr>
                 </table>
@@ -95,18 +140,18 @@ export function getEmailHtml(appUrl: string) {
 
             <!-- CTA -->
             <tr>
-              <td style="padding:8px 24px 32px;text-align:center;">
+              <td style="padding:20px 24px 32px;text-align:center;">
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;">
                   <tr>
                     <td style="background:#1B3252;border-radius:12px;">
                       <a href="${ctaLink}" target="_blank" style="display:inline-block;padding:16px 32px;color:#E8D5B8;font-weight:700;font-size:16px;text-decoration:none;letter-spacing:.3px;">
-                        Install Skybridge App
+                        View &amp; Manage Accessibility
                       </a>
                     </td>
                   </tr>
                 </table>
                 <p style="margin:14px 0 0;font-size:12px;color:#999;line-height:1.5;">
-                  Tap the button to install on your phone &mdash; takes 5 seconds
+                  Tap to open your booking and update your accessibility needs
                 </p>
               </td>
             </tr>
