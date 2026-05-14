@@ -26,6 +26,14 @@ export const ACCESSIBILITY_OPTIONS: AccessibilityOption[] = [
     description: "Aisle wheelchair to help you reach your seat",
     advanceNotice: false,
   },
+  {
+    id: "guided-assistance",
+    category: "Mobility",
+    label: "Guided assistance",
+    description:
+      "An agent will accompany you through security, the airport, and to your gate",
+    advanceNotice: false,
+  },
 ];
 
 export type Booking = {
