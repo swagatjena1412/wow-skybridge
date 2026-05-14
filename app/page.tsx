@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import { MOCK_BOOKING } from "@/lib/data";
 import { NavBar } from "@/components/NavBar";
+import { useBooking } from "@/lib/store";
 
 export default function MyTripsPage() {
   const booking = MOCK_BOOKING;
-  const activeCount = booking.selectedAccessibility.length;
+  const { selectedIds } = useBooking();
+  const activeCount = selectedIds.length;
 
   return (
     <>
