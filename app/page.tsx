@@ -1,28 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { CheckCircle, Sparkles } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { MOCK_BOOKING } from "@/lib/data";
 import { NavBar } from "@/components/NavBar";
 import { useBooking } from "@/lib/store";
-
-function readCurrentVariant(): string | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return localStorage.getItem("skybridge-variant");
-  } catch {
-    return null;
-  }
-}
 
 export default function MyTripsPage() {
   const booking = MOCK_BOOKING;
   const { selectedIds } = useBooking();
   const activeCount = selectedIds.length;
-
-  // Lazy init — read once on mount, no setState-in-effect
-  const [currentVariant] = useState<string | null>(readCurrentVariant);
 
   return (
     <>
@@ -98,25 +85,6 @@ export default function MyTripsPage() {
         <p className="text-center text-[12px] text-muted-foreground pt-2">
           Travel with confidence · Skybridge
         </p>
-
-        {/* Demo controls — switch A/B flavor on the fly */}
-        <div className="pt-6 mt-6 border-t border-border space-y-2">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
-            Demo controls
-          </p>
-          <Link
-            href="/?picker=1"
-            className="flex items-center gap-2 text-[13px] text-[#1F5E6B] dark:text-[#3AA8B5] hover:underline focus-visible:outline-2 focus-visible:outline-[#3AA8B5] focus-visible:outline-offset-2 rounded"
-          >
-            <Sparkles className="w-4 h-4" />
-            Switch A/B flavor
-            {currentVariant && (
-              <span className="ml-auto text-muted-foreground">
-                Currently: <span className="font-bold uppercase">{currentVariant}</span>
-              </span>
-            )}
-          </Link>
-        </div>
       </main>
     </>
   );

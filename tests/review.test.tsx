@@ -5,11 +5,6 @@ import { mockPush } from "./setup";
 import ReviewPage from "@/app/review/page";
 import { ACCESSIBILITY_OPTIONS, MOCK_BOOKING } from "@/lib/data";
 
-// Helper to force a specific variant for test isolation
-function setVariant(v: "a" | "b") {
-  localStorage.setItem("skybridge-variant", v);
-}
-
 describe("Review page", () => {
   beforeEach(() => {
     sessionStorage.clear();
@@ -44,21 +39,7 @@ describe("Review page", () => {
     expect(screen.getByText(/^new$/i)).toBeInTheDocument();
   });
 
-  it("Flavor B: Confirm & Save navigates to /confirmation and clears session", async () => {
-    setVariant("b");
-    const user = userEvent.setup();
-    sessionStorage.setItem(
-      "skybridge-pending",
-      JSON.stringify([ACCESSIBILITY_OPTIONS[0].id])
-    );
-    renderWithProviders(<ReviewPage />);
-    await user.click(screen.getByRole("button", { name: /confirm & save/i }));
-    expect(mockPush).toHaveBeenCalledWith("/confirmation");
-    expect(sessionStorage.getItem("skybridge-pending")).toBeNull();
-  });
-
-  it("Flavor A: Confirm & Save navigates to /booking?saved=1 and clears session", async () => {
-    setVariant("a");
+  it("Confirm & Save navigates to /booking?saved=1 and clears session", async () => {
     const user = userEvent.setup();
     sessionStorage.setItem(
       "skybridge-pending",
@@ -68,30 +49,6 @@ describe("Review page", () => {
     await user.click(screen.getByRole("button", { name: /confirm & save/i }));
     expect(mockPush).toHaveBeenCalledWith("/booking?saved=1");
     expect(sessionStorage.getItem("skybridge-pending")).toBeNull();
-  });
-
-  it("Flavor B: snapshots prev ids to sessionStorage before navigating", async () => {
-    setVariant("b");
-    const user = userEvent.setup();
-    sessionStorage.setItem(
-      "skybridge-pending",
-      JSON.stringify([ACCESSIBILITY_OPTIONS[0].id])
-    );
-    renderWithProviders(<ReviewPage />);
-    await user.click(screen.getByRole("button", { name: /confirm & save/i }));
-    expect(sessionStorage.getItem("skybridge-prev")).toBeTruthy();
-  });
-
-  it("logs a variant event on save", async () => {
-    setVariant("a");
-    const user = userEvent.setup();
-    sessionStorage.setItem("skybridge-pending", JSON.stringify([]));
-    renderWithProviders(<ReviewPage />);
-    await user.click(screen.getByRole("button", { name: /confirm & save/i }));
-    const events = JSON.parse(localStorage.getItem("skybridge-events") ?? "[]");
-    expect(events.length).toBeGreaterThan(0);
-    expect(events[0].variant).toBe("a");
-    expect(events[0].action).toBe("saved");
   });
 
   it("Edit button calls router.back", async () => {

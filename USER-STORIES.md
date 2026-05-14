@@ -135,42 +135,19 @@
 
 ---
 
-## Slice 4 — Confirmation page: A/B test
+## Slice 4 — Quick save (no confirmation page)
 
-**Mechanism:** Option C — localStorage random assignment. On first app launch, a 50/50 coin flip assigns `skybridge-variant: "a" | "b"` to localStorage. The same user always sees the same variant across sessions. Variant is tagged on all CSAT/NPS measurement events.
+**Decision:** After A/B exploration, we shipped only one experience: no confirmation page, with an inline success banner. The A/B variant infrastructure was removed to keep the demo focused.
 
-**Flavor A:** No confirmation page — save redirects straight back to Booking Detail.
-**Flavor B:** Confirmation page retained, but redesigned to clearly show what was *added* vs what was already saved — replacing the misleading "NEW" badge with an "Added" pill and a delta summary.
-
-### US-4.1 — Flavor A: Save without a confirmation page
+### US-4.1 — Save without a confirmation page
 
 > As an elderly traveler, I want my accessibility selections saved immediately and see the result on my booking straight away, so that I don't have to navigate through an extra screen.
 
 **Acceptance criteria:**
-- Given I am on Flavor A, when I tap "Review changes" and then "Confirm & Save" on the Review screen, I am redirected directly to Booking Detail (not /confirmation)
+- Given I am on the Review screen, when I tap "Confirm & Save", I am redirected directly to Booking Detail (not to a separate confirmation page)
 - The Accessibility section on Booking Detail immediately reflects the updated selections
-- A non-intrusive success banner ("Saved") appears briefly at the top of the booking detail screen and auto-dismisses after 2 seconds
+- A non-intrusive success banner ("Accessibility options saved") appears briefly at the top of the booking detail screen and auto-dismisses after 2 seconds
 - The banner is announced to screen readers via `aria-live="polite"`
-
-### US-4.2 — Flavor B: Redesigned confirmation showing what changed
-
-> As an elderly traveler, I want the confirmation screen to clearly show me which options I just added (vs what was already there), so that I am not confused by labels that look like new product features.
-
-**Acceptance criteria:**
-- Given I am on Flavor B, after confirming I land on the existing /confirmation route
-- Each option is shown in one of two states:
-  - **"Added this session"** — teal "Added" pill, green-tinted row
-  - **"Previously saved"** — plain checkmark, no pill
-- A delta summary line at the top reads: "X option(s) added" — no use of the word "NEW"
-- "Done" returns to My Trips
-
-### US-4.3 — Variant assignment and measurement
-
-**Acceptance criteria:**
-- On first app launch (no localStorage key present) the variant is assigned randomly with 50/50 probability
-- Assignment is stored to `localStorage` key `skybridge-variant` and used for all subsequent sessions
-- The active variant is readable anywhere in the app via a `useVariant()` hook
-- Every CSAT/NPS event (post-save) is tagged with `variant: "a"` or `variant: "b"` so results can be split in analysis
 
 ---
 
