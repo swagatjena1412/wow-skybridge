@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { BookingProvider } from "@/components/BookingProvider";
+import { RegisterSW } from "@/components/RegisterSW";
 
 export const metadata: Metadata = {
   title: "Skybridge",
@@ -33,6 +34,7 @@ export default function RootLayout({
             {children}
           </div>
         </BookingProvider>
+        <RegisterSW />
       </body>
     </html>
   );
